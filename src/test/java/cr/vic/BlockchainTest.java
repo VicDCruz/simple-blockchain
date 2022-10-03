@@ -1,20 +1,35 @@
 package cr.vic;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BlockchainTest {
-    @Test
-    void shouldReturnNull_whenChainIsEmpty() {
-        assertNull(getBlock());
+    private Blockchain blockchain;
+
+    @BeforeEach
+    void setUp() {
+        blockchain = new Blockchain();
     }
 
-    private static Object getBlock() {
-        List<Object> chain = new LinkedList<>();
-        return null;
+    @Test
+    void shouldReturnGenesis_whenChainIsEmpty() {
+        assertEquals(Block.createGenesisBlock().getHash(), blockchain.getLatest().getHash());
+    }
+
+    @Test
+    void shouldHaveTwoBlocks_whenInsertNewBlock() {
+        blockchain.insert("test content");
+
+        assertEquals(2, blockchain.size());
+    }
+
+    @Test
+    void shouldReturnLatestBlock_whenChainIsNotEmpty() {
+        String content = "test content";
+        blockchain.insert(content);
+
+        assertEquals(content, blockchain.getLatest().getContent());
     }
 }
