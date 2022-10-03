@@ -4,6 +4,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import static org.apache.commons.codec.digest.DigestUtils.sha256Hex;
+
 @ToString
 @NoArgsConstructor
 public class Block {
@@ -34,9 +36,9 @@ public class Block {
     }
 
     public String generateHash() {
-        return this.previousHash + '|' +
-               this.content + '|' +
-               this.type;
+        return sha256Hex(this.previousHash + '|' +
+                                     this.content + '|' +
+                                     this.type);
     }
 
     public void validate() {
