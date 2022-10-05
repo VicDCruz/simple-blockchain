@@ -17,13 +17,17 @@ public class Block {
     private Object content;
     @Getter @Setter
     private BlockTypeEnum type;
+    @Getter @Setter
+    private BlockStatusTypeEnum status;
     @Getter
     private final LocalDateTime timestamp = LocalDateTime.now();
+    private int nonce = 0;
 
     @Builder
     public Block(Block previousBlock, Object content) {
         this.previousHash = previousBlock.getHash();
         this.type = BlockTypeEnum.GENERAL;
+        this.status = BlockStatusTypeEnum.PENDING_MINING;
         this.content = content;
         this.hash = generateHash();
     }
@@ -35,10 +39,15 @@ public class Block {
         return genesis;
     }
 
-    public String generateHash() {
+    public String generateHash(int nonce) {
         return sha256Hex(this.previousHash + '|' +
-                                     this.content + '|' +
-                                     this.type);
+                         this.content + '|' +
+                         this.type + '|' +
+                         nonce);
+    }
+
+    public String generateHash() {
+        return generateHash(this.nonce);
     }
 
     public void validate() {
@@ -52,5 +61,14 @@ public class Block {
 
     public boolean isGenesis() {
         return BlockTypeEnum.GENESIS == type;
+    }
+
+    public void setNonce(int nonce) {
+        this.nonce = nonce;
+        hash = generateHash();
+    }
+
+    public String testHash(int nonce) {
+        return this.generateHash(nonce);
     }
 }
