@@ -1,27 +1,18 @@
 package cr.vic;
 
-import lombok.AllArgsConstructor;
+public class ProofOfWorkConsensus extends AbstractConsensusProtocol {
+    private final int prefixLength;
 
-@AllArgsConstructor
-public class ProofOfWorkConsensus implements ConsensusProtocol {
-    private Block block;
-    private int prefixLength;
+    public ProofOfWorkConsensus(Block block, int prefixLength) {
+        super(block);
+        this.prefixLength = prefixLength;
+    }
 
     @Override
     public MiningConsensusResponse consensual() {
         long startTimer = System.currentTimeMillis();
         int nonce = computationalPuzzle(block, prefixLength);
         return new MiningConsensusResponse(nonce, System.currentTimeMillis() - startTimer);
-    }
-
-    @Override
-    public void verifyMiningStatus() {
-        if (block.getStatus() == BlockStatusTypeEnum.MINED) throw new AlreadyMinedException();
-    }
-
-    @Override
-    public void finishBlock() {
-        block.setNonce(MiningResponseManager.getWinner().nonce);
     }
 
     private int computationalPuzzle(Block block, int prefixLength) {
