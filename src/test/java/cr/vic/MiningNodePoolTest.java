@@ -16,7 +16,7 @@ class MiningNodePoolTest {
     void shouldHaveSize10_whenFixedPoolIsCreated() {
         int size = 10;
 
-        MiningNodePool miningNodePool = MiningNodePool.fixedInstancesNodePool(size);
+        MiningNodePool miningNodePool = MiningNodePool.fixedMiningNodePool(size);
 
         assertEquals(size, miningNodePool.size());
         miningNodePool.printAllNodeNames();

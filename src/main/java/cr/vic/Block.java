@@ -66,9 +66,11 @@ public class Block {
     public void setNonce(int nonce) {
         this.nonce = nonce;
         hash = generateHash();
+        setStatus(BlockStatusTypeEnum.MINED);
     }
 
     public String testHash(int nonce) {
         return this.generateHash(nonce);
     }
+
 }

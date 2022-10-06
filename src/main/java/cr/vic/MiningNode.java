@@ -5,15 +5,20 @@ import lombok.*;
 import java.util.concurrent.Callable;
 
 @ToString
-@AllArgsConstructor
-public abstract class MiningNode implements Callable<MiningConsensusResponse>, Consensus {
-    @Getter @Setter
-    private String name;
+@RequiredArgsConstructor
+public class MiningNode implements Callable<Boolean> { // Command pattern is similar to Callable/Runnable
+    @Getter
+    private final String name;
     @Setter
-    private MiningConsensusRequest miningRequest;
+    private ConsensusProtocol protocol;
 
     @Override
-    public MiningConsensusResponse call() {
-        return mine(miningRequest);
+    public Boolean call() {
+        try {
+            MiningResponseManager.addResponse(protocol.consensual());
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }
