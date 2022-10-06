@@ -1,5 +1,7 @@
-package cr.vic;
+package cr.vic.mining;
 
+import cr.vic.consensus.protocol.interfaces.ConsensusProtocol;
+import cr.vic.consensus.protocol.mining.ConsensusResponseManager;
 import lombok.*;
 
 import java.util.concurrent.Callable;
@@ -15,7 +17,7 @@ public class MiningNode implements Callable<Boolean> { // Command pattern is sim
     @Override
     public Boolean call() {
         try {
-            MiningResponseManager.addResponse(protocol.consensual());
+            ConsensusResponseManager.addResponse(protocol.consensual());
         } catch (Exception e) {
             return false;
         }

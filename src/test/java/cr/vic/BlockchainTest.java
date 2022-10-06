@@ -1,5 +1,6 @@
 package cr.vic;
 
+import cr.vic.block.Block;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

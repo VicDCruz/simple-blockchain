@@ -1,4 +1,4 @@
-package cr.vic;
+package cr.vic.block.enums;
 
 public enum BlockStatusTypeEnum {
     MINED,

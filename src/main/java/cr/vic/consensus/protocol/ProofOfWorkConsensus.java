@@ -1,4 +1,9 @@
-package cr.vic;
+package cr.vic.consensus.protocol;
+
+import cr.vic.block.Block;
+import cr.vic.consensus.protocol.abstracts.AbstractConsensusProtocol;
+import cr.vic.consensus.protocol.mining.ConsensusResponse;
+import cr.vic.utils.string.StringCommons;
 
 public class ProofOfWorkConsensus extends AbstractConsensusProtocol {
     private final int prefixLength;
@@ -9,10 +14,10 @@ public class ProofOfWorkConsensus extends AbstractConsensusProtocol {
     }
 
     @Override
-    public MiningConsensusResponse consensual() {
+    public ConsensusResponse consensual() {
         long startTimer = System.currentTimeMillis();
         int nonce = computationalPuzzle(block, prefixLength);
-        return new MiningConsensusResponse(nonce, System.currentTimeMillis() - startTimer);
+        return new ConsensusResponse(nonce, System.currentTimeMillis() - startTimer);
     }
 
     private int computationalPuzzle(Block block, int prefixLength) {

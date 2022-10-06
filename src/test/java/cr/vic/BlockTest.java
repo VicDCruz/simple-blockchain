@@ -1,5 +1,7 @@
 package cr.vic;
 
+import cr.vic.block.Block;
+import cr.vic.block.enums.BlockTypeEnum;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,5 +1,6 @@
 package cr.vic;
 
+import cr.vic.mining.MiningNodePool;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

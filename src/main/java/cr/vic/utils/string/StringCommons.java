@@ -1,4 +1,4 @@
-package cr.vic;
+package cr.vic.utils.string;
 
 public class StringCommons {
     public static String createPrefixString(int prefixLength) {

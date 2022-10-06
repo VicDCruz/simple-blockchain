@@ -1,5 +1,7 @@
-package cr.vic;
+package cr.vic.block;
 
+import cr.vic.block.enums.BlockStatusTypeEnum;
+import cr.vic.block.enums.BlockTypeEnum;
 import lombok.*;
 
 import java.time.LocalDateTime;

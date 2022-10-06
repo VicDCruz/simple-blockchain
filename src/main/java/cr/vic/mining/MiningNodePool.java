@@ -1,5 +1,7 @@
-package cr.vic;
+package cr.vic.mining;
 
+import cr.vic.consensus.protocol.interfaces.ConsensusProtocol;
+import cr.vic.consensus.protocol.mining.ConsensusResponseManager;
 import lombok.Getter;
 
 import java.util.HashSet;
@@ -35,7 +37,7 @@ public class MiningNodePool {
 
     public void mine(ConsensusProtocol consensusProtocol) {
         consensusProtocol.verifyMiningStatus();
-        MiningResponseManager.start();
+        ConsensusResponseManager.start();
         if (!pool.isEmpty()) {
             setMiningConsensusRequestInPool(consensusProtocol);
             notifyMining();

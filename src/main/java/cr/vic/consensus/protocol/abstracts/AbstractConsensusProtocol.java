@@ -1,5 +1,10 @@
-package cr.vic;
+package cr.vic.consensus.protocol.abstracts;
 
+import cr.vic.block.exceptions.AlreadyMinedException;
+import cr.vic.block.Block;
+import cr.vic.block.enums.BlockStatusTypeEnum;
+import cr.vic.consensus.protocol.interfaces.ConsensusProtocol;
+import cr.vic.consensus.protocol.mining.ConsensusResponseManager;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -13,6 +18,6 @@ public abstract class AbstractConsensusProtocol implements ConsensusProtocol {
 
     @Override
     public void finishBlock() {
-        block.setNonce(MiningResponseManager.getWinner().nonce);
+        block.setNonce(ConsensusResponseManager.getWinner().nonce);
     }
 }

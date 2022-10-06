@@ -1,5 +1,7 @@
 package cr.vic;
 
+import cr.vic.block.Block;
+
 import java.util.LinkedList;
 import java.util.List;
 

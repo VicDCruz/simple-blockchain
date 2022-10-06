@@ -1,5 +1,11 @@
 package cr.vic;
 
+import cr.vic.block.exceptions.AlreadyMinedException;
+import cr.vic.block.Block;
+import cr.vic.block.enums.BlockStatusTypeEnum;
+import cr.vic.consensus.protocol.ProofOfWorkConsensus;
+import cr.vic.mining.MiningNodePool;
+import cr.vic.utils.string.StringCommons;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
